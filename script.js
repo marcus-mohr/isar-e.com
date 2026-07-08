@@ -3,7 +3,6 @@ const menuToggle = document.querySelector('.menu-toggle');
 const siteNav = document.querySelector('.site-nav');
 const navLinks = document.querySelectorAll('.site-nav a');
 const animatedElements = document.querySelectorAll('[data-animate]');
-const yearElement = document.getElementById('year');
 const whatsappDirect = document.getElementById('whatsapp-direct');
 const whatsappFloating = document.querySelector('.whatsapp-float');
 
@@ -95,10 +94,6 @@ if (whatsappDirect) {
 
 if (whatsappFloating) {
   whatsappFloating.href = getWhatsappHref();
-}
-
-if (yearElement) {
-  yearElement.textContent = new Date().getFullYear();
 }
 
 updateHeaderState();
