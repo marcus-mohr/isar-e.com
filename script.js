@@ -9,7 +9,7 @@ const whatsappFloating = document.querySelector('.whatsapp-float');
 
 document.documentElement.classList.add('js-enabled');
 
-const whatsappNumber = '5547999938013';
+const whatsappNumber = '491753494594';
 const whatsappMessage = 'Olá, gostaria de falar com a ISAR Engenharia sobre um desafio industrial.';
 
 const closeMenu = () => {
