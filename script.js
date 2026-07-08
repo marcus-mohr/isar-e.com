@@ -4,16 +4,13 @@ const siteNav = document.querySelector('.site-nav');
 const navLinks = document.querySelectorAll('.site-nav a');
 const animatedElements = document.querySelectorAll('[data-animate]');
 const yearElement = document.getElementById('year');
-const contactForm = document.getElementById('contact-form');
-const formStatus = document.getElementById('form-status');
 const whatsappDirect = document.getElementById('whatsapp-direct');
-const whatsappForm = document.getElementById('whatsapp-form');
 const whatsappFloating = document.querySelector('.whatsapp-float');
 
 document.documentElement.classList.add('js-enabled');
 
-const contactEmail = 'info@isar-e.com';
-const whatsappNumber = '491753494594';
+const whatsappNumber = '5547999938013';
+const whatsappMessage = 'Olá, gostaria de falar com a ISAR Engenharia sobre um desafio industrial.';
 
 const closeMenu = () => {
   if (!menuToggle || !siteNav) return;
@@ -27,28 +24,7 @@ const updateHeaderState = () => {
   header.classList.toggle('is-scrolled', window.scrollY > 8);
 };
 
-const getFormMessage = () => {
-  if (!contactForm) return '';
-  const formData = new FormData(contactForm);
-  const lines = [
-    'Solicitação de avaliação técnica - ISAR Engenharia',
-    '',
-    `Nome: ${formData.get('Nome') || ''}`,
-    `Empresa: ${formData.get('Empresa') || ''}`,
-    `Cargo: ${formData.get('Cargo') || ''}`,
-    `E-mail: ${formData.get('E-mail') || ''}`,
-    `WhatsApp: ${formData.get('WhatsApp') || ''}`,
-    `Cidade/Estado: ${formData.get('Cidade/Estado') || ''}`,
-    `Tipo de projeto: ${formData.get('Tipo de projeto') || ''}`,
-    '',
-    'Desafio técnico:',
-    formData.get('Desafio técnico') || ''
-  ];
-
-  return lines.join('\n');
-};
-
-const getWhatsappHref = (message = 'Olá, gostaria de falar com a ISAR Engenharia.') =>
+const getWhatsappHref = (message = whatsappMessage) =>
   `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
 if (menuToggle && siteNav) {
@@ -113,38 +89,12 @@ if ('IntersectionObserver' in window) {
   animatedElements.forEach((element) => element.classList.add('is-visible'));
 }
 
-if (contactForm) {
-  contactForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    if (!contactForm.reportValidity()) return;
-
-    const subject = 'Solicitação de avaliação técnica - ISAR Engenharia';
-    const body = getFormMessage();
-    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    if (formStatus) {
-      formStatus.textContent = 'Mensagem preparada no seu aplicativo de e-mail.';
-    }
-  });
-}
-
 if (whatsappDirect) {
   whatsappDirect.href = getWhatsappHref();
 }
 
 if (whatsappFloating) {
   whatsappFloating.href = getWhatsappHref();
-}
-
-if (whatsappForm) {
-  whatsappForm.addEventListener('click', () => {
-    const message = contactForm && contactForm.checkValidity()
-      ? getFormMessage()
-      : 'Olá, gostaria de falar com a ISAR Engenharia.';
-
-    window.open(getWhatsappHref(message), '_blank', 'noopener');
-  });
 }
 
 if (yearElement) {
