@@ -679,11 +679,14 @@ section[id] {
 .site-footer {
   background: #0f1724;
   color: #d8e2ef;
-  padding: 3.2rem 0 1.2rem;
+  padding: clamp(2.8rem, 4.5vw, 3.8rem) 0 1.45rem;
 }
 
 .footer-grid {
-  max-width: 720px;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(420px, 1fr);
+  gap: clamp(2rem, 7vw, 5.5rem);
+  align-items: start;
 }
 
 .footer-brand img {
@@ -697,11 +700,46 @@ section[id] {
   margin: 1rem 0 0;
 }
 
-.footer-bottom {
+.footer-info {
   display: grid;
-  gap: 0.22rem;
-  margin-top: 2.2rem;
-  padding-top: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+  justify-self: end;
+  width: min(100%, 560px);
+}
+
+.footer-info div {
+  min-width: 0;
+  padding-top: 0.78rem;
+  border-top: 1px solid rgba(216, 226, 239, 0.18);
+}
+
+.footer-info span {
+  display: block;
+  color: #8ea1bb;
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.footer-info strong {
+  display: block;
+  margin-top: 0.38rem;
+  color: #edf4ff;
+  font-size: 0.94rem;
+  line-height: 1.38;
+  overflow-wrap: anywhere;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: 1.05rem;
   border-top: 1px solid rgba(216, 226, 239, 0.18);
 }
 
@@ -858,6 +896,21 @@ section[id] {
     position: static;
   }
 
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-info {
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
 }
 
 @media (max-width: 680px) {
@@ -913,6 +966,11 @@ section[id] {
 
   .process-list article {
     min-height: auto;
+  }
+
+  .footer-info {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
   }
 
 }
